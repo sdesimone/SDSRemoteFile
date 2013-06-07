@@ -7,7 +7,7 @@
 //
 
 #import "SDSAppDelegate.h"
-#import "SDWebImageManager.h"
+#import "SDSRemoteFileManager.h"
 
 @implementation SDSAppDelegate
 
@@ -19,14 +19,14 @@
     [self.window makeKeyAndVisible];
     
     NSString* imageURL = @"http://files.parse.com/b6a8c6d1-ba52-4d82-bde7-d2f2c9bb6fe4/6279b03f-521a-4481-97ae-553a0396ff98-MBAdef";
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    SDSRemoteFileManager *manager = [SDSRemoteFileManager sharedManager];
     [manager downloadWithURL:[NSURL URLWithString:imageURL]
                      options:0
                     progress:^(NSUInteger receivedSize, long long expectedSize)
      {
          NSLog(@"PROGRESS: %f", ((float)receivedSize)/expectedSize);
      }
-                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished)
+                   completed:^(UIImage *image, NSError *error, SDSFileCacheType cacheType, BOOL finished)
      {
          if (image)
          {

@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-#import "SDWebImageManager.h"
+#import "SDSRemoteFileManager.h"
 //#import "UIImage+GIF.h"
 #import <objc/message.h>
 
@@ -17,16 +17,16 @@
 
 @end
 
-@interface SDWebImageManager ()
+@interface SDSRemoteFileManager ()
 
-@property (strong, nonatomic, readwrite) SDImageCache *imageCache;
+@property (strong, nonatomic, readwrite) SDSFileCache *imageCache;
 @property (strong, nonatomic, readwrite) SDWebImageDownloader *imageDownloader;
 @property (strong, nonatomic) NSMutableArray *failedURLs;
 @property (strong, nonatomic) NSMutableArray *runningOperations;
 
 @end
 
-@implementation SDWebImageManager
+@implementation SDSRemoteFileManager
 
 + (id)sharedManager
 {
@@ -48,9 +48,9 @@
     return self;
 }
 
-- (SDImageCache *)createCache
+- (SDSFileCache *)createCache
 {
-    return [SDImageCache sharedImageCache];
+    return [SDSFileCache sharedImageCache];
 }
 
 - (NSString *)cacheKeyForURL:(NSURL *)url
@@ -90,7 +90,7 @@
         if (completedBlock)
         {
             NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:nil];
-            completedBlock(nil, error, SDImageCacheTypeNone, YES);
+            completedBlock(nil, error, SDSFileCacheTypeNone, YES);
         }
         return operation;
     }
@@ -102,7 +102,7 @@
     
     NSString *key = [self cacheKeyForURL:url];
 
-    [self.imageCache queryDiskCacheForKey:key done:^(UIImage *image, SDImageCacheType cacheType)
+    [self.imageCache queryDiskCacheForKey:key done:^(UIImage *image, SDSFileCacheType cacheType)
     {
         if (operation.isCancelled) return;
 
@@ -131,11 +131,11 @@
             {                
                 if (weakOperation.cancelled)
                 {
-                    completedBlock(nil, nil, SDImageCacheTypeNone, finished);
+                    completedBlock(nil, nil, SDSFileCacheTypeNone, finished);
                 }
                 else if (error)
                 {
-                    completedBlock(nil, error, SDImageCacheTypeNone, finished);
+                    completedBlock(nil, error, SDSFileCacheTypeNone, finished);
 
                     if (error.code != NSURLErrorNotConnectedToInternet)
                     {
@@ -161,7 +161,7 @@
 
                             dispatch_async(dispatch_get_main_queue(), ^
                             {
-                                completedBlock(transformedImage, nil, SDImageCacheTypeNone, finished);
+                                completedBlock(transformedImage, nil, SDSFileCacheTypeNone, finished);
                             });
 
                             if (transformedImage && finished)
@@ -173,7 +173,7 @@
                     }
                     else
                     {
-                        completedBlock(downloadedImage, nil, SDImageCacheTypeNone, finished);
+                        completedBlock(downloadedImage, nil, SDSFileCacheTypeNone, finished);
 
                         if (downloadedImage && finished)
                         {
@@ -203,7 +203,7 @@
         else
         {
             // Image not in cache and download disallowed by delegate
-            completedBlock(nil, nil, SDImageCacheTypeNone, YES);
+            completedBlock(nil, nil, SDSFileCacheTypeNone, YES);
             @synchronized(self.runningOperations)
             {
                 [self.runningOperations removeObject:operation];

@@ -9,28 +9,28 @@
 #import <Foundation/Foundation.h>
 //#import "SDWebImageCompat.h"
 
-enum SDImageCacheType
+enum SDSFileCacheType
 {
     /**
      * The image wasn't available the SDWebImage caches, but was downloaded from the web.
      */
-    SDImageCacheTypeNone = 0,
+    SDSFileCacheTypeNone = 0,
     /**
      * The image was obtained from the disk cache.
      */
-    SDImageCacheTypeDisk,
+    SDSFileCacheTypeDisk,
     /**
      * The image was obtained from the memory cache.
      */
-    SDImageCacheTypeMemory
+    SDSFileCacheTypeMemory
 };
-typedef enum SDImageCacheType SDImageCacheType;
+typedef enum SDSFileCacheType SDSFileCacheType;
 
 /**
- * SDImageCache maintains a memory cache and an optional disk cache. Disk cache write operations are performed
+ * SDSFileCache maintains a memory cache and an optional disk cache. Disk cache write operations are performed
  * asynchronous so it doesn’t add unnecessary latency to the UI.
  */
-@interface SDImageCache : NSObject
+@interface SDSFileCache : NSObject
 
 /**
  * The maximum length of time to keep an image in the cache, in seconds
@@ -45,9 +45,9 @@ typedef enum SDImageCacheType SDImageCacheType;
 /**
  * Returns global shared cache instance
  *
- * @return SDImageCache global instance
+ * @return SDSFileCache global instance
  */
-+ (SDImageCache *)sharedImageCache;
++ (SDSFileCache *)sharedImageCache;
 
 /**
  * Init a new cache store with a specific namespace
@@ -90,7 +90,7 @@ typedef enum SDImageCacheType SDImageCacheType;
  *
  * @param key The unique key used to store the wanted image
  */
-- (void)queryDiskCacheForKey:(NSString *)key done:(void (^)(UIImage *image, SDImageCacheType cacheType))doneBlock;
+- (void)queryDiskCacheForKey:(NSString *)key done:(void (^)(UIImage *image, SDSFileCacheType cacheType))doneBlock;
 
 /**
  * Query the memory cache synchronously.

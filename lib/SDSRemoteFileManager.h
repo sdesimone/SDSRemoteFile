@@ -9,7 +9,7 @@
 //#import "SDWebImageCompat.h"
 #import "SDWebImageOperation.h"
 #import "SDWebImageDownloader.h"
-#import "SDImageCache.h"
+#import "SDSFileCache.h"
 
 typedef enum
 {
@@ -43,55 +43,55 @@ typedef enum
     SDWebImageRefreshCached = 1 << 4
 } SDWebImageOptions;
 
-typedef void(^SDWebImageCompletedBlock)(UIImage *image, NSError *error, SDImageCacheType cacheType);
-typedef void(^SDWebImageCompletedWithFinishedBlock)(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished);
+typedef void(^SDWebImageCompletedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType);
+typedef void(^SDWebImageCompletedWithFinishedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType, BOOL finished);
 
 
-@class SDWebImageManager;
+@class SDSRemoteFileManager;
 
-@protocol SDWebImageManagerDelegate <NSObject>
+@protocol SDSRemoteFileManagerDelegate <NSObject>
 
 @optional
 
 /**
  * Controls which image should be downloaded when the image is not found in the cache.
  *
- * @param imageManager The current `SDWebImageManager`
+ * @param imageManager The current `SDSRemoteFileManager`
  * @param imageURL The url of the image to be downloaded
  *
  * @return Return NO to prevent the downloading of the image on cache misses. If not implemented, YES is implied.
  */
-- (BOOL)imageManager:(SDWebImageManager *)imageManager shouldDownloadImageForURL:(NSURL *)imageURL;
+- (BOOL)imageManager:(SDSRemoteFileManager *)imageManager shouldDownloadImageForURL:(NSURL *)imageURL;
 
 /**
  * Allows to transform the image immediately after it has been downloaded and just before to cache it on disk and memory.
  * NOTE: This method is called from a global queue in order to not to block the main thread.
  *
- * @param imageManager The current `SDWebImageManager`
+ * @param imageManager The current `SDSRemoteFileManager`
  * @param image The image to transform
  * @param imageURL The url of the image to transform
  *
  * @return The transformed image object.
  */
-- (UIImage *)imageManager:(SDWebImageManager *)imageManager transformDownloadedImage:(UIImage *)image withURL:(NSURL *)imageURL;
+- (UIImage *)imageManager:(SDSRemoteFileManager *)imageManager transformDownloadedImage:(UIImage *)image withURL:(NSURL *)imageURL;
 
 @end
 
 /**
- * The SDWebImageManager is the class behind the UIImageView+WebCache category and likes.
- * It ties the asynchronous downloader (SDWebImageDownloader) with the image cache store (SDImageCache).
+ * The SDSRemoteFileManager is the class behind the UIImageView+WebCache category and likes.
+ * It ties the asynchronous downloader (SDWebImageDownloader) with the image cache store (SDSFileCache).
  * You can use this class directly to benefit from web image downloading with caching in another context than
  * a UIView.
  *
- * Here is a simple example of how to use SDWebImageManager:
+ * Here is a simple example of how to use SDSRemoteFileManager:
  *
  * @code
 
-SDWebImageManager *manager = [SDWebImageManager sharedManager];
+SDSRemoteFileManager *manager = [SDSRemoteFileManager sharedManager];
 [manager downloadWithURL:imageURL
                  options:0
                 progress:nil
-               completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished)
+               completed:^(UIImage *image, NSError *error, SDSFileCacheType cacheType, BOOL finished)
                {
                    if (image)
                    {
@@ -101,15 +101,15 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
 
  * @endcode
  */
-@interface SDWebImageManager : NSObject
+@interface SDSRemoteFileManager : NSObject
 
-@property (weak, nonatomic) id<SDWebImageManagerDelegate> delegate;
+@property (weak, nonatomic) id<SDSRemoteFileManagerDelegate> delegate;
 
-@property (strong, nonatomic, readonly) SDImageCache *imageCache;
+@property (strong, nonatomic, readonly) SDSFileCache *imageCache;
 @property (strong, nonatomic, readonly) SDWebImageDownloader *imageDownloader;
 
 /**
- * The cache filter is a block used each time SDWebImageManager need to convert an URL into a cache key. This can
+ * The cache filter is a block used each time SDSRemoteFileManager need to convert an URL into a cache key. This can
  * be used to remove dynamic part of an image URL.
  *
  * The following example sets a filter in the application delegate that will remove any query-string from the
@@ -117,7 +117,7 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
  *
  * @code
 
-[[SDWebImageManager sharedManager] setCacheKeyFilter:^(NSURL *url)
+[[SDSRemoteFileManager sharedManager] setCacheKeyFilter:^(NSURL *url)
 {
     url = [[NSURL alloc] initWithScheme:url.scheme host:url.host path:url.path];
     return [url absoluteString];
@@ -128,11 +128,11 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
 @property (strong) NSString *(^cacheKeyFilter)(NSURL *url);
 
 /**
- * Returns global SDWebImageManager instance.
+ * Returns global SDSRemoteFileManager instance.
  *
- * @return SDWebImageManager shared instance
+ * @return SDSRemoteFileManager shared instance
  */
-+ (SDWebImageManager *)sharedManager;
++ (SDSRemoteFileManager *)sharedManager;
 
 /**
  * Downloads the image at the given URL if not present in cache or return the cached version otherwise.
@@ -145,7 +145,7 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
  *   This block as no return value and takes the requested UIImage as first parameter.
  *   In case of error the image parameter is nil and the second parameter may contain an NSError.
  *
- *   The third parameter is an `SDImageCacheType` enum indicating if the image was retrived from the local cache
+ *   The third parameter is an `SDSFileCacheType` enum indicating if the image was retrived from the local cache
  *   or from the memory cache or from the network.
  *
  *   The last parameter is set to NO when the SDWebImageProgressiveDownload option is used and the image is 

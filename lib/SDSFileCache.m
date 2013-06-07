@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-#import "SDImageCache.h"
+#import "SDSFileCache.h"
 #import "SDWebImageOperation.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <mach/mach.h>
@@ -14,7 +14,7 @@
 
 static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 
-@interface SDImageCache ()
+@interface SDSFileCache ()
 
 @property (strong, nonatomic) NSCache *memCache;
 @property (strong, nonatomic) NSString *diskCachePath;
@@ -23,9 +23,9 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 @end
 
 
-@implementation SDImageCache
+@implementation SDSFileCache
 
-+ (SDImageCache *)sharedImageCache
++ (SDSFileCache *)sharedImageCache
 {
     static dispatch_once_t once;
     static id instance;
@@ -81,7 +81,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
     SDDispatchQueueRelease(_ioQueue);
 }
 
-#pragma mark SDImageCache (private)
+#pragma mark SDSFileCache (private)
 
 - (NSString *)cachePathForKey:(NSString *)key
 {
@@ -195,13 +195,13 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
     return image;
 }
 
-- (void)queryDiskCacheForKey:(NSString *)key done:(void (^)(UIImage *image, SDImageCacheType cacheType))doneBlock
+- (void)queryDiskCacheForKey:(NSString *)key done:(void (^)(UIImage *image, SDSFileCacheType cacheType))doneBlock
 {
     if (!doneBlock) return;
 
     if (!key)
     {
-        doneBlock(nil, SDImageCacheTypeNone);
+        doneBlock(nil, SDSFileCacheTypeNone);
         return;
     }
 
@@ -209,7 +209,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
     UIImage *image = [self imageFromMemoryCacheForKey:key];
     if (image)
     {
-        doneBlock(image, SDImageCacheTypeMemory);
+        doneBlock(image, SDSFileCacheTypeMemory);
         return;
     }
 
@@ -226,7 +226,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 
             dispatch_async(dispatch_get_main_queue(), ^
             {
-                doneBlock(diskImage, SDImageCacheTypeDisk);
+                doneBlock(diskImage, SDSFileCacheTypeDisk);
             });
         }
     });
