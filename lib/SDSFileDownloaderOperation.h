@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "SDSFileDownloader.h"
-#import "SDWebImageOperation.h"
+#import "SDSRemoteFileOperation.h"
 
-@interface SDSFileDownloaderOperation : NSOperation <SDWebImageOperation>
+@interface SDSFileDownloaderOperation : NSOperation <SDSRemoteFileOperation>
 
 @property (strong, nonatomic, readonly) NSURLRequest *request;
 @property (assign, nonatomic, readonly) SDSFileDownloaderOptions options;

@@ -69,7 +69,7 @@
 		490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSFileDownloaderOperation.m; sourceTree = "<group>"; };
 		490F8A431761EC800037042E /* SDSRemoteFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSRemoteFileManager.h; sourceTree = "<group>"; };
 		490F8A441761EC800037042E /* SDRemoteFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRemoteFileManager.m; sourceTree = "<group>"; };
-		490F8A451761EC800037042E /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		490F8A451761EC800037042E /* SDSRemoteFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSRemoteFileOperation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +181,7 @@
 				490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */,
 				490F8A431761EC800037042E /* SDSRemoteFileManager.h */,
 				490F8A441761EC800037042E /* SDRemoteFileManager.m */,
-				490F8A451761EC800037042E /* SDWebImageOperation.h */,
+				490F8A451761EC800037042E /* SDSRemoteFileOperation.h */,
 			);
 			path = lib;
 			sourceTree = SOURCE_ROOT;

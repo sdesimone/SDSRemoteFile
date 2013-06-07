@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 //#import "SDWebImageCompat.h"
-#import "SDWebImageOperation.h"
+#import "SDSRemoteFileOperation.h"
 
 typedef enum
 {
@@ -92,9 +92,9 @@ typedef void(^SDSFileDownloaderCompletedBlock)(UIImage *image, NSData *data, NSE
  *                  before to be called a last time with the full image and finished argument
  *                  set to YES. In case of error, the finished argument is always YES.
  *
- * @return A cancellable SDWebImageOperation
+ * @return A cancellable SDSRemoteFileOperation
  */
-- (id<SDWebImageOperation>)downloadImageWithURL:(NSURL *)url
+- (id<SDSRemoteFileOperation>)downloadImageWithURL:(NSURL *)url
                                         options:(SDSFileDownloaderOptions)options
                                        progress:(SDSFileDownloaderProgressBlock)progressBlock
                                       completed:(SDSFileDownloaderCompletedBlock)completedBlock;

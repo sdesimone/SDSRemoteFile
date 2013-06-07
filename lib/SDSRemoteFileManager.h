@@ -7,7 +7,7 @@
  */
 
 //#import "SDWebImageCompat.h"
-#import "SDWebImageOperation.h"
+#import "SDSRemoteFileOperation.h"
 #import "SDSFileDownloader.h"
 #import "SDSFileCache.h"
 
@@ -154,7 +154,7 @@ SDSRemoteFileManager *manager = [SDSRemoteFileManager sharedManager];
  *
  * @return Returns a cancellable NSOperation
  */
-- (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url
+- (id<SDSRemoteFileOperation>)downloadWithURL:(NSURL *)url
                                    options:(SDWebImageOptions)options
                                   progress:(SDSFileDownloaderProgressBlock)progressBlock
                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock;

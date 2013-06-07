@@ -42,7 +42,7 @@
 #define SDDispatchQueueSetterSementics assign
 #endif
 
-@protocol SDWebImageOperation <NSObject>
+@protocol SDSRemoteFileOperation <NSObject>
 
 - (void)cancel;
 

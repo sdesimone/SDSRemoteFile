@@ -10,7 +10,7 @@
 //#import "UIImage+GIF.h"
 #import <objc/message.h>
 
-@interface SDWebImageCombinedOperation : NSObject <SDWebImageOperation>
+@interface SDWebImageCombinedOperation : NSObject <SDSRemoteFileOperation>
 
 @property (assign, nonatomic, getter = isCancelled) BOOL cancelled;
 @property (copy, nonatomic) void (^cancelBlock)();
@@ -65,7 +65,7 @@
     }
 }
 
-- (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDSFileDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+- (id<SDSRemoteFileOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDSFileDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
 {    
     if ([url isKindOfClass:NSString.class]) {
         url = [NSURL URLWithString:(NSString *)url];
@@ -127,7 +127,7 @@
                 // ignore image read from NSURLCache if image if cached but force refreshing
                 downloaderOptions |= SDSFileDownloaderIgnoreCachedResponse;
             }
-            __block id<SDWebImageOperation> subOperation = [self.imageDownloader downloadImageWithURL:url options:downloaderOptions progress:progressBlock completed:^(UIImage *downloadedImage, NSData *data, NSError *error, BOOL finished)
+            __block id<SDSRemoteFileOperation> subOperation = [self.imageDownloader downloadImageWithURL:url options:downloaderOptions progress:progressBlock completed:^(UIImage *downloadedImage, NSData *data, NSError *error, BOOL finished)
             {                
                 if (weakOperation.cancelled)
                 {

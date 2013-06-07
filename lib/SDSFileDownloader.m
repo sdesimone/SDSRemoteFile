@@ -109,7 +109,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
     return _downloadQueue.maxConcurrentOperationCount;
 }
 
-- (id<SDWebImageOperation>)downloadImageWithURL:(NSURL *)url options:(SDSFileDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock
+- (id<SDSRemoteFileOperation>)downloadImageWithURL:(NSURL *)url options:(SDSFileDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock
 {
     __block SDSFileDownloaderOperation *operation;
     __weak SDSFileDownloader *wself = self;

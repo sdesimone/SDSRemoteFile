@@ -7,7 +7,7 @@
  */
 
 #import "SDSFileCache.h"
-#import "SDWebImageOperation.h"
+#import "SDSRemoteFileOperation.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <mach/mach.h>
 #import <mach/mach_host.h>
