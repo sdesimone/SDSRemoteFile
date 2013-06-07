@@ -7,6 +7,7 @@
 //
 
 #import "SDSAppDelegate.h"
+#import "SDWebImageManager.h"
 
 @implementation SDSAppDelegate
 
@@ -16,6 +17,25 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    NSString* imageURL = @"http://files.parse.com/b6a8c6d1-ba52-4d82-bde7-d2f2c9bb6fe4/6279b03f-521a-4481-97ae-553a0396ff98-MBAdef";
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    [manager downloadWithURL:[NSURL URLWithString:imageURL]
+                     options:0
+                    progress:^(NSUInteger receivedSize, long long expectedSize)
+     {
+         NSLog(@"PROGRESS: %f", ((float)receivedSize)/expectedSize);
+     }
+                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished)
+     {
+         if (image)
+         {
+             // do something with image
+         }
+     }];
+
+    
+    
     return YES;
 }
 
