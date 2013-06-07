@@ -8,7 +8,7 @@
 
 //#import "SDWebImageCompat.h"
 #import "SDWebImageOperation.h"
-#import "SDWebImageDownloader.h"
+#import "SDSFileDownloader.h"
 #import "SDSFileCache.h"
 
 typedef enum
@@ -79,7 +79,7 @@ typedef void(^SDWebImageCompletedWithFinishedBlock)(UIImage *image, NSError *err
 
 /**
  * The SDSRemoteFileManager is the class behind the UIImageView+WebCache category and likes.
- * It ties the asynchronous downloader (SDWebImageDownloader) with the image cache store (SDSFileCache).
+ * It ties the asynchronous downloader (SDSFileDownloader) with the image cache store (SDSFileCache).
  * You can use this class directly to benefit from web image downloading with caching in another context than
  * a UIView.
  *
@@ -106,7 +106,7 @@ SDSRemoteFileManager *manager = [SDSRemoteFileManager sharedManager];
 @property (weak, nonatomic) id<SDSRemoteFileManagerDelegate> delegate;
 
 @property (strong, nonatomic, readonly) SDSFileCache *imageCache;
-@property (strong, nonatomic, readonly) SDWebImageDownloader *imageDownloader;
+@property (strong, nonatomic, readonly) SDSFileDownloader *imageDownloader;
 
 /**
  * The cache filter is a block used each time SDSRemoteFileManager need to convert an URL into a cache key. This can
@@ -156,7 +156,7 @@ SDSRemoteFileManager *manager = [SDSRemoteFileManager sharedManager];
  */
 - (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url
                                    options:(SDWebImageOptions)options
-                                  progress:(SDWebImageDownloaderProgressBlock)progressBlock
+                                  progress:(SDSFileDownloaderProgressBlock)progressBlock
                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock;
 
 /**

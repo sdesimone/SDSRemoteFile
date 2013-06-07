@@ -12,51 +12,51 @@
 
 typedef enum
 {
-    SDWebImageDownloaderLowPriority = 1 << 0,
-    SDWebImageDownloaderProgressiveDownload = 1 << 1,
+    SDSFileDownloaderLowPriority = 1 << 0,
+    SDSFileDownloaderProgressiveDownload = 1 << 1,
     /**
      * By default, request prevent the of NSURLCache. With this flag, NSURLCache
      * is used with default policies.
      */
-    SDWebImageDownloaderUseNSURLCache = 1 << 2,
+    SDSFileDownloaderUseNSURLCache = 1 << 2,
     /**
      * Call completion block with nil image/imageData if the image was read from NSURLCache
-     * (to be combined with `SDWebImageDownloaderUseNSURLCache`).
+     * (to be combined with `SDSFileDownloaderUseNSURLCache`).
      */
-    SDWebImageDownloaderIgnoreCachedResponse = 1 << 3
-} SDWebImageDownloaderOptions;
+    SDSFileDownloaderIgnoreCachedResponse = 1 << 3
+} SDSFileDownloaderOptions;
 
 typedef enum
 {
-    SDWebImageDownloaderFIFOExecutionOrder,
+    SDSFileDownloaderFIFOExecutionOrder,
     /**
      * Default value. All download operations will execute in queue style (first-in-first-out).
      */
-    SDWebImageDownloaderLIFOExecutionOrder
+    SDSFileDownloaderLIFOExecutionOrder
     /**
      * All download operations will execute in stack style (last-in-first-out).
      */
-} SDWebImageDownloaderExecutionOrder;
+} SDSFileDownloaderExecutionOrder;
 
 extern NSString *const SDWebImageDownloadStartNotification;
 extern NSString *const SDWebImageDownloadStopNotification;
 
-typedef void(^SDWebImageDownloaderProgressBlock)(NSUInteger receivedSize, long long expectedSize);
-typedef void(^SDWebImageDownloaderCompletedBlock)(UIImage *image, NSData *data, NSError *error, BOOL finished);
+typedef void(^SDSFileDownloaderProgressBlock)(NSUInteger receivedSize, long long expectedSize);
+typedef void(^SDSFileDownloaderCompletedBlock)(UIImage *image, NSData *data, NSError *error, BOOL finished);
 
 /**
  * Asynchronous downloader dedicated and optimized for image loading.
  */
-@interface SDWebImageDownloader : NSObject
+@interface SDSFileDownloader : NSObject
 
 @property (assign, nonatomic) NSInteger maxConcurrentDownloads;
 
 /**
- * Changes download operations execution order. Default value is `SDWebImageDownloaderFIFOExecutionOrder`.
+ * Changes download operations execution order. Default value is `SDSFileDownloaderFIFOExecutionOrder`.
  */
-@property (assign, nonatomic) SDWebImageDownloaderExecutionOrder executionOrder;
+@property (assign, nonatomic) SDSFileDownloaderExecutionOrder executionOrder;
 
-+ (SDWebImageDownloader *)sharedDownloader;
++ (SDSFileDownloader *)sharedDownloader;
 
 /**
  * Set a value for a HTTP header to be appended to each download HTTP request.
@@ -74,11 +74,11 @@ typedef void(^SDWebImageDownloaderCompletedBlock)(UIImage *image, NSData *data, 
 - (NSString *)valueForHTTPHeaderField:(NSString *)field;
 
 /**
- * Creates a SDWebImageDownloader async downloader instance with a given URL
+ * Creates a SDSFileDownloader async downloader instance with a given URL
  *
  * The delegate will be informed when the image is finish downloaded or an error has happen.
  *
- * @see SDWebImageDownloaderDelegate
+ * @see SDSFileDownloaderDelegate
  *
  * @param url The URL to the image to download
  * @param options The options to be used for this download
@@ -86,8 +86,8 @@ typedef void(^SDWebImageDownloaderCompletedBlock)(UIImage *image, NSData *data, 
  * @param completedBlock A block called once the download is completed.
  *                  If the download succeeded, the image parameter is set, in case of error,
  *                  error parameter is set with the error. The last parameter is always YES
- *                  if SDWebImageDownloaderProgressiveDownload isn't use. With the
- *                  SDWebImageDownloaderProgressiveDownload option, this block is called
+ *                  if SDSFileDownloaderProgressiveDownload isn't use. With the
+ *                  SDSFileDownloaderProgressiveDownload option, this block is called
  *                  repeatedly with the partial image object and the finished argument set to NO
  *                  before to be called a last time with the full image and finished argument
  *                  set to YES. In case of error, the finished argument is always YES.
@@ -95,8 +95,8 @@ typedef void(^SDWebImageDownloaderCompletedBlock)(UIImage *image, NSData *data, 
  * @return A cancellable SDWebImageOperation
  */
 - (id<SDWebImageOperation>)downloadImageWithURL:(NSURL *)url
-                                        options:(SDWebImageDownloaderOptions)options
-                                       progress:(SDWebImageDownloaderProgressBlock)progressBlock
-                                      completed:(SDWebImageDownloaderCompletedBlock)completedBlock;
+                                        options:(SDSFileDownloaderOptions)options
+                                       progress:(SDSFileDownloaderProgressBlock)progressBlock
+                                      completed:(SDSFileDownloaderCompletedBlock)completedBlock;
 
 @end

@@ -6,15 +6,15 @@
  * file that was distributed with this source code.
  */
 
-#import "SDWebImageDownloaderOperation.h"
+#import "SDSFileDownloaderOperation.h"
 //#import "SDWebImageDecoder.h"
 //#import "UIImage+GIF.h"
 #import <ImageIO/ImageIO.h>
 
-@interface SDWebImageDownloaderOperation ()
+@interface SDSFileDownloaderOperation ()
 
-@property (copy, nonatomic) SDWebImageDownloaderProgressBlock progressBlock;
-@property (copy, nonatomic) SDWebImageDownloaderCompletedBlock completedBlock;
+@property (copy, nonatomic) SDSFileDownloaderProgressBlock progressBlock;
+@property (copy, nonatomic) SDSFileDownloaderCompletedBlock completedBlock;
 @property (copy, nonatomic) void (^cancelBlock)();
 
 @property (assign, nonatomic, getter = isExecuting) BOOL executing;
@@ -25,13 +25,13 @@
 
 @end
 
-@implementation SDWebImageDownloaderOperation
+@implementation SDSFileDownloaderOperation
 {
     size_t width, height;
     BOOL responseFromCached;
 }
 
-- (id)initWithRequest:(NSURLRequest *)request options:(SDWebImageDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock cancelled:(void (^)())cancelBlock
+- (id)initWithRequest:(NSURLRequest *)request options:(SDSFileDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock cancelled:(void (^)())cancelBlock
 {
     if ((self = [super init]))
     {
@@ -172,7 +172,7 @@
     [self.imageData appendData:data];
 
     //-- THIS IS FOR IMAGE PROGRESSIVE DOWNLOAD -- DOES NOT APPLY
-/*    if ((self.options & SDWebImageDownloaderProgressiveDownload) && self.expectedSize > 0 && self.completedBlock)
+/*    if ((self.options & SDSFileDownloaderProgressiveDownload) && self.expectedSize > 0 && self.completedBlock)
     {
         // The following code is from http://www.cocoaintheshell.com/2011/05/progressive-images-download-imageio/
         // Thanks to the author @Nyx0uf
@@ -263,11 +263,11 @@
 
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:nil];
 
-    SDWebImageDownloaderCompletedBlock completionBlock = self.completedBlock;
+    SDSFileDownloaderCompletedBlock completionBlock = self.completedBlock;
 
     if (completionBlock)
     {
-        if (self.options & SDWebImageDownloaderIgnoreCachedResponse && responseFromCached)
+        if (self.options & SDSFileDownloaderIgnoreCachedResponse && responseFromCached)
         {
             completionBlock(nil, nil, nil, YES);
             self.completionBlock = nil;

@@ -23,10 +23,10 @@
 		490F8A181761E8C30037042E /* SDSCachedRemoteFileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A171761E8C30037042E /* SDSCachedRemoteFileManagerTests.m */; };
 		490F8A461761EC800037042E /* SDSFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A3D1761EC800037042E /* SDSFileCache.m */; };
 		490F8A471761EC800037042E /* SDSFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A3D1761EC800037042E /* SDSFileCache.m */; };
-		490F8A481761EC800037042E /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A401761EC800037042E /* SDWebImageDownloader.m */; };
-		490F8A491761EC800037042E /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A401761EC800037042E /* SDWebImageDownloader.m */; };
-		490F8A4A1761EC800037042E /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A421761EC800037042E /* SDWebImageDownloaderOperation.m */; };
-		490F8A4B1761EC800037042E /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A421761EC800037042E /* SDWebImageDownloaderOperation.m */; };
+		490F8A481761EC800037042E /* SDSFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A401761EC800037042E /* SDSFileDownloader.m */; };
+		490F8A491761EC800037042E /* SDSFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A401761EC800037042E /* SDSFileDownloader.m */; };
+		490F8A4A1761EC800037042E /* SDSFileDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */; };
+		490F8A4B1761EC800037042E /* SDSFileDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */; };
 		490F8A4C1761EC800037042E /* SDRemoteFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A441761EC800037042E /* SDRemoteFileManager.m */; };
 		490F8A4D1761EC800037042E /* SDRemoteFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A441761EC800037042E /* SDRemoteFileManager.m */; };
 /* End PBXBuildFile section */
@@ -63,10 +63,10 @@
 		490F8A171761E8C30037042E /* SDSCachedRemoteFileManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDSCachedRemoteFileManagerTests.m; sourceTree = "<group>"; };
 		490F8A3C1761EC800037042E /* SDSFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSFileCache.h; sourceTree = "<group>"; };
 		490F8A3D1761EC800037042E /* SDSFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSFileCache.m; sourceTree = "<group>"; };
-		490F8A3F1761EC800037042E /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
-		490F8A401761EC800037042E /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
-		490F8A411761EC800037042E /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
-		490F8A421761EC800037042E /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
+		490F8A3F1761EC800037042E /* SDSFileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSFileDownloader.h; sourceTree = "<group>"; };
+		490F8A401761EC800037042E /* SDSFileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSFileDownloader.m; sourceTree = "<group>"; };
+		490F8A411761EC800037042E /* SDSFileDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSFileDownloaderOperation.h; sourceTree = "<group>"; };
+		490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSFileDownloaderOperation.m; sourceTree = "<group>"; };
 		490F8A431761EC800037042E /* SDSRemoteFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSRemoteFileManager.h; sourceTree = "<group>"; };
 		490F8A441761EC800037042E /* SDRemoteFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRemoteFileManager.m; sourceTree = "<group>"; };
 		490F8A451761EC800037042E /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
@@ -175,10 +175,10 @@
 			children = (
 				490F8A3C1761EC800037042E /* SDSFileCache.h */,
 				490F8A3D1761EC800037042E /* SDSFileCache.m */,
-				490F8A3F1761EC800037042E /* SDWebImageDownloader.h */,
-				490F8A401761EC800037042E /* SDWebImageDownloader.m */,
-				490F8A411761EC800037042E /* SDWebImageDownloaderOperation.h */,
-				490F8A421761EC800037042E /* SDWebImageDownloaderOperation.m */,
+				490F8A3F1761EC800037042E /* SDSFileDownloader.h */,
+				490F8A401761EC800037042E /* SDSFileDownloader.m */,
+				490F8A411761EC800037042E /* SDSFileDownloaderOperation.h */,
+				490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */,
 				490F8A431761EC800037042E /* SDSRemoteFileManager.h */,
 				490F8A441761EC800037042E /* SDRemoteFileManager.m */,
 				490F8A451761EC800037042E /* SDWebImageOperation.h */,
@@ -299,8 +299,8 @@
 				490F89F91761E8C30037042E /* main.m in Sources */,
 				490F89FD1761E8C30037042E /* SDSAppDelegate.m in Sources */,
 				490F8A461761EC800037042E /* SDSFileCache.m in Sources */,
-				490F8A481761EC800037042E /* SDWebImageDownloader.m in Sources */,
-				490F8A4A1761EC800037042E /* SDWebImageDownloaderOperation.m in Sources */,
+				490F8A481761EC800037042E /* SDSFileDownloader.m in Sources */,
+				490F8A4A1761EC800037042E /* SDSFileDownloaderOperation.m in Sources */,
 				490F8A4C1761EC800037042E /* SDRemoteFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,8 +311,8 @@
 			files = (
 				490F8A181761E8C30037042E /* SDSCachedRemoteFileManagerTests.m in Sources */,
 				490F8A471761EC800037042E /* SDSFileCache.m in Sources */,
-				490F8A491761EC800037042E /* SDWebImageDownloader.m in Sources */,
-				490F8A4B1761EC800037042E /* SDWebImageDownloaderOperation.m in Sources */,
+				490F8A491761EC800037042E /* SDSFileDownloader.m in Sources */,
+				490F8A4B1761EC800037042E /* SDSFileDownloaderOperation.m in Sources */,
 				490F8A4D1761EC800037042E /* SDRemoteFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

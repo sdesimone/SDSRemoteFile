@@ -7,18 +7,18 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "SDWebImageDownloader.h"
+#import "SDSFileDownloader.h"
 #import "SDWebImageOperation.h"
 
-@interface SDWebImageDownloaderOperation : NSOperation <SDWebImageOperation>
+@interface SDSFileDownloaderOperation : NSOperation <SDWebImageOperation>
 
 @property (strong, nonatomic, readonly) NSURLRequest *request;
-@property (assign, nonatomic, readonly) SDWebImageDownloaderOptions options;
+@property (assign, nonatomic, readonly) SDSFileDownloaderOptions options;
 
 - (id)initWithRequest:(NSURLRequest *)request
-              options:(SDWebImageDownloaderOptions)options
-             progress:(SDWebImageDownloaderProgressBlock)progressBlock
-            completed:(SDWebImageDownloaderCompletedBlock)completedBlock
+              options:(SDSFileDownloaderOptions)options
+             progress:(SDSFileDownloaderProgressBlock)progressBlock
+            completed:(SDSFileDownloaderCompletedBlock)completedBlock
             cancelled:(void (^)())cancelBlock;
 
 @end
