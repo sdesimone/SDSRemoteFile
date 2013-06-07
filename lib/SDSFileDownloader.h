@@ -1,5 +1,5 @@
 /*
- * This file is part of the SDWebImage package.
+ * This file is part of the SDSRemoteFile package.
  * (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -7,7 +7,7 @@
  */
 
 #import <Foundation/Foundation.h>
-//#import "SDWebImageCompat.h"
+//#import "SDSRemoteFileCompat.h"
 #import "SDSRemoteFileOperation.h"
 
 typedef enum
@@ -38,8 +38,8 @@ typedef enum
      */
 } SDSFileDownloaderExecutionOrder;
 
-extern NSString *const SDWebImageDownloadStartNotification;
-extern NSString *const SDWebImageDownloadStopNotification;
+extern NSString *const SDSRemoteFileDownloadStartNotification;
+extern NSString *const SDSRemoteFileDownloadStopNotification;
 
 typedef void(^SDSFileDownloaderProgressBlock)(NSUInteger receivedSize, long long expectedSize);
 typedef void(^SDSFileDownloaderCompletedBlock)(UIImage *image, NSData *data, NSError *error, BOOL finished);

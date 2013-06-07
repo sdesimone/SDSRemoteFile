@@ -1,5 +1,5 @@
 /*
- * This file is part of the SDWebImage package.
+ * This file is part of the SDSRemoteFile package.
  * (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -7,12 +7,12 @@
  */
 
 #import <Foundation/Foundation.h>
-//#import "SDWebImageCompat.h"
+//#import "SDSRemoteFileCompat.h"
 
 enum SDSFileCacheType
 {
     /**
-     * The image wasn't available the SDWebImage caches, but was downloaded from the web.
+     * The image wasn't available the SDSRemoteFile caches, but was downloaded from the web.
      */
     SDSFileCacheTypeNone = 0,
     /**

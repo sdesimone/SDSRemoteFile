@@ -1,12 +1,12 @@
 /*
- * This file is part of the SDWebImage package.
+ * This file is part of the SDSRemoteFile package.
  * (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-//#import "SDWebImageCompat.h"
+//#import "SDSRemoteFileCompat.h"
 #import "SDSRemoteFileOperation.h"
 #import "SDSFileDownloader.h"
 #import "SDSFileCache.h"
@@ -17,34 +17,34 @@ typedef enum
      * By default, when a URL fail to be downloaded, the URL is blacklisted so the library won't keep trying.
      * This flag disable this blacklisting.
      */
-    SDWebImageRetryFailed = 1 << 0,
+    SDSRemoteFileRetryFailed = 1 << 0,
     /**
      * By default, image downloads are started during UI interactions, this flags disable this feature,
      * leading to delayed download on UIScrollView deceleration for instance.
      */
-    SDWebImageLowPriority = 1 << 1,
+    SDSRemoteFileLowPriority = 1 << 1,
     /**
      * This flag disables on-disk caching
      */
-    SDWebImageCacheMemoryOnly = 1 << 2,
+    SDSRemoteFileCacheMemoryOnly = 1 << 2,
     /**
      * This flag enables progressive download, the image is displayed progressively during download as a browser would do.
      * By default, the image is only displayed once completely downloaded.
      */
-    SDWebImageProgressiveDownload = 1 << 3,
+    SDSRemoteFileProgressiveDownload = 1 << 3,
     /**
      * Even if the image is cached, respect the HTTP response cache control, and refresh the image from remote location if needed.
-     * The disk caching will be handled by NSURLCache instead of SDWebImage leading to slight performance degradation.
+     * The disk caching will be handled by NSURLCache instead of SDSRemoteFile leading to slight performance degradation.
      * This option helps deal with images changing behind the same request URL, e.g. Facebook graph api profile pics.
      * If a cached image is refreshed, the completion block is called once with the cached image and again with the final image.
      *
      * Use this flag only if you can't make your URLs static with embeded cache busting parameter.
      */
-    SDWebImageRefreshCached = 1 << 4
-} SDWebImageOptions;
+    SDSRemoteFileRefreshCached = 1 << 4
+} SDSRemoteFileOptions;
 
-typedef void(^SDWebImageCompletedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType);
-typedef void(^SDWebImageCompletedWithFinishedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType, BOOL finished);
+typedef void(^SDSRemoteFileCompletedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType);
+typedef void(^SDSRemoteFileCompletedWithFinishedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType, BOOL finished);
 
 
 @class SDSRemoteFileManager;
@@ -148,16 +148,16 @@ SDSRemoteFileManager *manager = [SDSRemoteFileManager sharedManager];
  *   The third parameter is an `SDSFileCacheType` enum indicating if the image was retrived from the local cache
  *   or from the memory cache or from the network.
  *
- *   The last parameter is set to NO when the SDWebImageProgressiveDownload option is used and the image is 
+ *   The last parameter is set to NO when the SDSRemoteFileProgressiveDownload option is used and the image is 
  *   downloading. This block is thus called repetidly with a partial image. When image is fully downloaded, the
  *   block is called a last time with the full image and the last parameter set to YES.
  *
  * @return Returns a cancellable NSOperation
  */
 - (id<SDSRemoteFileOperation>)downloadWithURL:(NSURL *)url
-                                   options:(SDWebImageOptions)options
+                                   options:(SDSRemoteFileOptions)options
                                   progress:(SDSFileDownloaderProgressBlock)progressBlock
-                                 completed:(SDWebImageCompletedWithFinishedBlock)completedBlock;
+                                 completed:(SDSRemoteFileCompletedWithFinishedBlock)completedBlock;
 
 /**
  * Cancel all current opreations

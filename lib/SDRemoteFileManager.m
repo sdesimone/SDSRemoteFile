@@ -1,5 +1,5 @@
 /*
- * This file is part of the SDWebImage package.
+ * This file is part of the SDSRemoteFile package.
  * (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -10,7 +10,7 @@
 //#import "UIImage+GIF.h"
 #import <objc/message.h>
 
-@interface SDWebImageCombinedOperation : NSObject <SDSRemoteFileOperation>
+@interface SDSRemoteFileCombinedOperation : NSObject <SDSRemoteFileOperation>
 
 @property (assign, nonatomic, getter = isCancelled) BOOL cancelled;
 @property (copy, nonatomic) void (^cancelBlock)();
@@ -65,7 +65,7 @@
     }
 }
 
-- (id<SDSRemoteFileOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDSFileDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+- (id<SDSRemoteFileOperation>)downloadWithURL:(NSURL *)url options:(SDSRemoteFileOptions)options progress:(SDSFileDownloaderProgressBlock)progressBlock completed:(SDSRemoteFileCompletedWithFinishedBlock)completedBlock
 {    
     if ([url isKindOfClass:NSString.class]) {
         url = [NSURL URLWithString:(NSString *)url];
@@ -76,8 +76,8 @@
         url = nil;
     }
 
-    __block SDWebImageCombinedOperation *operation = SDWebImageCombinedOperation.new;
-    __weak SDWebImageCombinedOperation *weakOperation = operation;
+    __block SDSRemoteFileCombinedOperation *operation = SDSRemoteFileCombinedOperation.new;
+    __weak SDSRemoteFileCombinedOperation *weakOperation = operation;
     
     BOOL isFailedUrl = NO;
     @synchronized(self.failedURLs)
@@ -85,7 +85,7 @@
         isFailedUrl = [self.failedURLs containsObject:url];
     }
 
-    if (!url || !completedBlock || (!(options & SDWebImageRetryFailed) && isFailedUrl))
+    if (!url || !completedBlock || (!(options & SDSRemoteFileRetryFailed) && isFailedUrl))
     {
         if (completedBlock)
         {
@@ -106,21 +106,21 @@
     {
         if (operation.isCancelled) return;
 
-        if ((!image || options & SDWebImageRefreshCached) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url]))
+        if ((!image || options & SDSRemoteFileRefreshCached) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url]))
         {
-            if (image && options & SDWebImageRefreshCached)
+            if (image && options & SDSRemoteFileRefreshCached)
             {
-                // If image was found in the cache bug SDWebImageRefreshCached is provided, notify about the cached image
+                // If image was found in the cache bug SDSRemoteFileRefreshCached is provided, notify about the cached image
                 // AND try to re-download it in order to let a chance to NSURLCache to refresh it from server.
                 completedBlock(image, nil, cacheType, YES);
             }
 
             // download if no image or requested to refresh anyway, and download allowed by delegate
             SDSFileDownloaderOptions downloaderOptions = 0;
-            if (options & SDWebImageLowPriority) downloaderOptions |= SDSFileDownloaderLowPriority;
-            if (options & SDWebImageProgressiveDownload) downloaderOptions |= SDSFileDownloaderProgressiveDownload;
-            if (options & SDWebImageRefreshCached) downloaderOptions |= SDSFileDownloaderUseNSURLCache;
-            if (image && options & SDWebImageRefreshCached)
+            if (options & SDSRemoteFileLowPriority) downloaderOptions |= SDSFileDownloaderLowPriority;
+            if (options & SDSRemoteFileProgressiveDownload) downloaderOptions |= SDSFileDownloaderProgressiveDownload;
+            if (options & SDSRemoteFileRefreshCached) downloaderOptions |= SDSFileDownloaderUseNSURLCache;
+            if (image && options & SDSRemoteFileRefreshCached)
             {
                 // force progressive off if image already cached but forced refreshing
                 downloaderOptions &= ~SDSFileDownloaderProgressiveDownload;
@@ -147,9 +147,9 @@
                 }
                 else
                 {
-                    BOOL cacheOnDisk = !(options & SDWebImageCacheMemoryOnly);
+                    BOOL cacheOnDisk = !(options & SDSRemoteFileCacheMemoryOnly);
 
-                    if (options & SDWebImageRefreshCached && image && !downloadedImage)
+                    if (options & SDSRemoteFileRefreshCached && image && !downloadedImage)
                     {
                         // Image refresh hit the NSURLCache cache, do not call the completion block
                     }
@@ -230,7 +230,7 @@
 
 @end
 
-@implementation SDWebImageCombinedOperation
+@implementation SDSRemoteFileCombinedOperation
 
 - (void)setCancelBlock:(void (^)())cancelBlock
 {

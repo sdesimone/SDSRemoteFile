@@ -1,5 +1,5 @@
 /*
- * This file is part of the SDWebImage package.
+ * This file is part of the SDSRemoteFile package.
  * (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -42,10 +42,10 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 {
     if ((self = [super init]))
     {
-        NSString *fullNamespace = [@"com.hackemist.SDWebImageCache." stringByAppendingString:ns];
+        NSString *fullNamespace = [@"com.hackemist.SDSRemoteFileCache." stringByAppendingString:ns];
 
         // Create IO serial queue
-        _ioQueue = dispatch_queue_create("com.hackemist.SDWebImageCache", DISPATCH_QUEUE_SERIAL);
+        _ioQueue = dispatch_queue_create("com.hackemist.SDSRemoteFileCache", DISPATCH_QUEUE_SERIAL);
 
         // Init default values
         _maxCacheAge = kDefaultCacheMaxCacheAge;

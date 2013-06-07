@@ -1,5 +1,5 @@
 /*
- * This file is part of the SDWebImage package.
+ * This file is part of the SDSRemoteFile package.
  * (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -10,8 +10,8 @@
 #import "SDSFileDownloaderOperation.h"
 #import <ImageIO/ImageIO.h>
 
-NSString *const SDWebImageDownloadStartNotification = @"SDWebImageDownloadStartNotification";
-NSString *const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNotification";
+NSString *const SDSRemoteFileDownloadStartNotification = @"SDSRemoteFileDownloadStartNotification";
+NSString *const SDSRemoteFileDownloadStopNotification = @"SDSRemoteFileDownloadStopNotification";
 
 static NSString *const kProgressCallbackKey = @"progress";
 static NSString *const kCompletedCallbackKey = @"completed";
@@ -32,7 +32,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
 + (void)initialize
 {
     // Bind SDNetworkActivityIndicator if available (download it here: http://github.com/rs/SDNetworkActivityIndicator )
-    // To use it, just add #import "SDNetworkActivityIndicator.h" in addition to the SDWebImage import
+    // To use it, just add #import "SDNetworkActivityIndicator.h" in addition to the SDSRemoteFile import
     if (NSClassFromString(@"SDNetworkActivityIndicator"))
     {
 
@@ -42,15 +42,15 @@ static NSString *const kCompletedCallbackKey = @"completed";
 #pragma clang diagnostic pop
 
         // Remove observer in case it was previously added.
-        [[NSNotificationCenter defaultCenter] removeObserver:activityIndicator name:SDWebImageDownloadStartNotification object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:activityIndicator name:SDWebImageDownloadStopNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:activityIndicator name:SDSRemoteFileDownloadStartNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:activityIndicator name:SDSRemoteFileDownloadStopNotification object:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:activityIndicator
                                                  selector:NSSelectorFromString(@"startActivity")
-                                                     name:SDWebImageDownloadStartNotification object:nil];
+                                                     name:SDSRemoteFileDownloadStartNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:activityIndicator
                                                  selector:NSSelectorFromString(@"stopActivity")
-                                                     name:SDWebImageDownloadStopNotification object:nil];
+                                                     name:SDSRemoteFileDownloadStopNotification object:nil];
     }
 }
 

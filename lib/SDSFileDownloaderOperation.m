@@ -1,5 +1,5 @@
 /*
- * This file is part of the SDWebImage package.
+ * This file is part of the SDSRemoteFile package.
  * (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -7,7 +7,7 @@
  */
 
 #import "SDSFileDownloaderOperation.h"
-//#import "SDWebImageDecoder.h"
+//#import "SDSRemoteFileDecoder.h"
 //#import "UIImage+GIF.h"
 #import <ImageIO/ImageIO.h>
 
@@ -68,7 +68,7 @@
         {
             self.progressBlock(0, -1);
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDSRemoteFileDownloadStartNotification object:self];
 
         // Make sure to run the runloop in our background thread so it can process downloaded data
         CFRunLoopRun();
@@ -91,7 +91,7 @@
     if (self.connection)
     {
         [self.connection cancel];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDSRemoteFileDownloadStopNotification object:self];
 
         // As we cancelled the connection, its callback won't be called and thus won't
         // maintain the isFinished and isExecuting flags.
@@ -156,7 +156,7 @@
     {
         [self.connection cancel];
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDSRemoteFileDownloadStopNotification object:nil];
 
         if (self.completedBlock)
         {
@@ -261,7 +261,7 @@
     CFRunLoopStop(CFRunLoopGetCurrent());
     self.connection = nil;
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDSRemoteFileDownloadStopNotification object:nil];
 
     SDSFileDownloaderCompletedBlock completionBlock = self.completedBlock;
 
@@ -280,7 +280,7 @@
             
             if (CGSizeEqualToSize(image.size, CGSizeZero))
             {
-                completionBlock(nil, nil, [NSError errorWithDomain:@"SDWebImageErrorDomain" code:0 userInfo:@{NSLocalizedDescriptionKey: @"Downloaded image has 0 pixels"}], YES);
+                completionBlock(nil, nil, [NSError errorWithDomain:@"SDSRemoteFileErrorDomain" code:0 userInfo:@{NSLocalizedDescriptionKey: @"Downloaded image has 0 pixels"}], YES);
             }
             else
             {
@@ -299,7 +299,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     CFRunLoopStop(CFRunLoopGetCurrent());
-    [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStopNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDSRemoteFileDownloadStopNotification object:nil];
 
     if (self.completedBlock)
     {
