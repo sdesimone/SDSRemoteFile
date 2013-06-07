@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		490F89ED1761E8C30037042E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F89EC1761E8C30037042E /* UIKit.framework */; };
+		490F89EF1761E8C30037042E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F89EE1761E8C30037042E /* Foundation.framework */; };
+		490F89F11761E8C30037042E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F89F01761E8C30037042E /* CoreGraphics.framework */; };
+		490F89F71761E8C30037042E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 490F89F51761E8C30037042E /* InfoPlist.strings */; };
+		490F89F91761E8C30037042E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F89F81761E8C30037042E /* main.m */; };
+		490F89FD1761E8C30037042E /* SDSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F89FC1761E8C30037042E /* SDSAppDelegate.m */; };
+		490F89FF1761E8C30037042E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 490F89FE1761E8C30037042E /* Default.png */; };
+		490F8A011761E8C30037042E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490F8A001761E8C30037042E /* Default@2x.png */; };
+		490F8A031761E8C30037042E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 490F8A021761E8C30037042E /* Default-568h@2x.png */; };
+		490F8A0B1761E8C30037042E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F8A0A1761E8C30037042E /* SenTestingKit.framework */; };
+		490F8A0C1761E8C30037042E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F89EC1761E8C30037042E /* UIKit.framework */; };
+		490F8A0D1761E8C30037042E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F89EE1761E8C30037042E /* Foundation.framework */; };
+		490F8A151761E8C30037042E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 490F8A131761E8C30037042E /* InfoPlist.strings */; };
+		490F8A181761E8C30037042E /* SDSCachedRemoteFileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A171761E8C30037042E /* SDSCachedRemoteFileManagerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		490F8A0E1761E8C30037042E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 490F89E11761E8C30037042E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 490F89E81761E8C30037042E;
+			remoteInfo = SDSCachedRemoteFileManager;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		490F89E91761E8C30037042E /* SDSCachedRemoteFileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDSCachedRemoteFileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		490F89EC1761E8C30037042E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		490F89EE1761E8C30037042E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		490F89F01761E8C30037042E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		490F89F41761E8C30037042E /* SDSCachedRemoteFileManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDSCachedRemoteFileManager-Info.plist"; sourceTree = "<group>"; };
+		490F89F61761E8C30037042E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		490F89F81761E8C30037042E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		490F89FA1761E8C30037042E /* SDSCachedRemoteFileManager-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDSCachedRemoteFileManager-Prefix.pch"; sourceTree = "<group>"; };
+		490F89FB1761E8C30037042E /* SDSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDSAppDelegate.h; sourceTree = "<group>"; };
+		490F89FC1761E8C30037042E /* SDSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDSAppDelegate.m; sourceTree = "<group>"; };
+		490F89FE1761E8C30037042E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		490F8A001761E8C30037042E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		490F8A021761E8C30037042E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		490F8A091761E8C30037042E /* SDSCachedRemoteFileManagerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SDSCachedRemoteFileManagerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		490F8A0A1761E8C30037042E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		490F8A121761E8C30037042E /* SDSCachedRemoteFileManagerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDSCachedRemoteFileManagerTests-Info.plist"; sourceTree = "<group>"; };
+		490F8A141761E8C30037042E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		490F8A161761E8C30037042E /* SDSCachedRemoteFileManagerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDSCachedRemoteFileManagerTests.h; sourceTree = "<group>"; };
+		490F8A171761E8C30037042E /* SDSCachedRemoteFileManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDSCachedRemoteFileManagerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		490F89E61761E8C30037042E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490F89ED1761E8C30037042E /* UIKit.framework in Frameworks */,
+				490F89EF1761E8C30037042E /* Foundation.framework in Frameworks */,
+				490F89F11761E8C30037042E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		490F8A051761E8C30037042E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490F8A0B1761E8C30037042E /* SenTestingKit.framework in Frameworks */,
+				490F8A0C1761E8C30037042E /* UIKit.framework in Frameworks */,
+				490F8A0D1761E8C30037042E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		490F89E01761E8C30037042E = {
+			isa = PBXGroup;
+			children = (
+				490F89F21761E8C30037042E /* SDSCachedRemoteFileManager */,
+				490F8A101761E8C30037042E /* SDSCachedRemoteFileManagerTests */,
+				490F89EB1761E8C30037042E /* Frameworks */,
+				490F89EA1761E8C30037042E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		490F89EA1761E8C30037042E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				490F89E91761E8C30037042E /* SDSCachedRemoteFileManager.app */,
+				490F8A091761E8C30037042E /* SDSCachedRemoteFileManagerTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		490F89EB1761E8C30037042E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				490F89EC1761E8C30037042E /* UIKit.framework */,
+				490F89EE1761E8C30037042E /* Foundation.framework */,
+				490F89F01761E8C30037042E /* CoreGraphics.framework */,
+				490F8A0A1761E8C30037042E /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		490F89F21761E8C30037042E /* SDSCachedRemoteFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				490F89FB1761E8C30037042E /* SDSAppDelegate.h */,
+				490F89FC1761E8C30037042E /* SDSAppDelegate.m */,
+				490F89F31761E8C30037042E /* Supporting Files */,
+			);
+			path = SDSCachedRemoteFileManager;
+			sourceTree = "<group>";
+		};
+		490F89F31761E8C30037042E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				490F89F41761E8C30037042E /* SDSCachedRemoteFileManager-Info.plist */,
+				490F89F51761E8C30037042E /* InfoPlist.strings */,
+				490F89F81761E8C30037042E /* main.m */,
+				490F89FA1761E8C30037042E /* SDSCachedRemoteFileManager-Prefix.pch */,
+				490F89FE1761E8C30037042E /* Default.png */,
+				490F8A001761E8C30037042E /* Default@2x.png */,
+				490F8A021761E8C30037042E /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		490F8A101761E8C30037042E /* SDSCachedRemoteFileManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				490F8A161761E8C30037042E /* SDSCachedRemoteFileManagerTests.h */,
+				490F8A171761E8C30037042E /* SDSCachedRemoteFileManagerTests.m */,
+				490F8A111761E8C30037042E /* Supporting Files */,
+			);
+			path = SDSCachedRemoteFileManagerTests;
+			sourceTree = "<group>";
+		};
+		490F8A111761E8C30037042E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				490F8A121761E8C30037042E /* SDSCachedRemoteFileManagerTests-Info.plist */,
+				490F8A131761E8C30037042E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		490F89E81761E8C30037042E /* SDSCachedRemoteFileManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 490F8A1B1761E8C30037042E /* Build configuration list for PBXNativeTarget "SDSCachedRemoteFileManager" */;
+			buildPhases = (
+				490F89E51761E8C30037042E /* Sources */,
+				490F89E61761E8C30037042E /* Frameworks */,
+				490F89E71761E8C30037042E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDSCachedRemoteFileManager;
+			productName = SDSCachedRemoteFileManager;
+			productReference = 490F89E91761E8C30037042E /* SDSCachedRemoteFileManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		490F8A081761E8C30037042E /* SDSCachedRemoteFileManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 490F8A1E1761E8C30037042E /* Build configuration list for PBXNativeTarget "SDSCachedRemoteFileManagerTests" */;
+			buildPhases = (
+				490F8A041761E8C30037042E /* Sources */,
+				490F8A051761E8C30037042E /* Frameworks */,
+				490F8A061761E8C30037042E /* Resources */,
+				490F8A071761E8C30037042E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				490F8A0F1761E8C30037042E /* PBXTargetDependency */,
+			);
+			name = SDSCachedRemoteFileManagerTests;
+			productName = SDSCachedRemoteFileManagerTests;
+			productReference = 490F8A091761E8C30037042E /* SDSCachedRemoteFileManagerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		490F89E11761E8C30037042E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SDS;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Sergio De Simone, Freescapes Labs";
+			};
+			buildConfigurationList = 490F89E41761E8C30037042E /* Build configuration list for PBXProject "SDSCachedRemoteFileManager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 490F89E01761E8C30037042E;
+			productRefGroup = 490F89EA1761E8C30037042E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				490F89E81761E8C30037042E /* SDSCachedRemoteFileManager */,
+				490F8A081761E8C30037042E /* SDSCachedRemoteFileManagerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		490F89E71761E8C30037042E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490F89F71761E8C30037042E /* InfoPlist.strings in Resources */,
+				490F89FF1761E8C30037042E /* Default.png in Resources */,
+				490F8A011761E8C30037042E /* Default@2x.png in Resources */,
+				490F8A031761E8C30037042E /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		490F8A061761E8C30037042E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490F8A151761E8C30037042E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		490F8A071761E8C30037042E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		490F89E51761E8C30037042E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490F89F91761E8C30037042E /* main.m in Sources */,
+				490F89FD1761E8C30037042E /* SDSAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		490F8A041761E8C30037042E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				490F8A181761E8C30037042E /* SDSCachedRemoteFileManagerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		490F8A0F1761E8C30037042E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 490F89E81761E8C30037042E /* SDSCachedRemoteFileManager */;
+			targetProxy = 490F8A0E1761E8C30037042E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		490F89F51761E8C30037042E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				490F89F61761E8C30037042E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		490F8A131761E8C30037042E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				490F8A141761E8C30037042E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		490F8A191761E8C30037042E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		490F8A1A1761E8C30037042E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		490F8A1C1761E8C30037042E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDSCachedRemoteFileManager/SDSCachedRemoteFileManager-Prefix.pch";
+				INFOPLIST_FILE = "SDSCachedRemoteFileManager/SDSCachedRemoteFileManager-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		490F8A1D1761E8C30037042E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDSCachedRemoteFileManager/SDSCachedRemoteFileManager-Prefix.pch";
+				INFOPLIST_FILE = "SDSCachedRemoteFileManager/SDSCachedRemoteFileManager-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		490F8A1F1761E8C30037042E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SDSCachedRemoteFileManager.app/SDSCachedRemoteFileManager";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDSCachedRemoteFileManager/SDSCachedRemoteFileManager-Prefix.pch";
+				INFOPLIST_FILE = "SDSCachedRemoteFileManagerTests/SDSCachedRemoteFileManagerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		490F8A201761E8C30037042E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SDSCachedRemoteFileManager.app/SDSCachedRemoteFileManager";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDSCachedRemoteFileManager/SDSCachedRemoteFileManager-Prefix.pch";
+				INFOPLIST_FILE = "SDSCachedRemoteFileManagerTests/SDSCachedRemoteFileManagerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		490F89E41761E8C30037042E /* Build configuration list for PBXProject "SDSCachedRemoteFileManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				490F8A191761E8C30037042E /* Debug */,
+				490F8A1A1761E8C30037042E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		490F8A1B1761E8C30037042E /* Build configuration list for PBXNativeTarget "SDSCachedRemoteFileManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				490F8A1C1761E8C30037042E /* Debug */,
+				490F8A1D1761E8C30037042E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		490F8A1E1761E8C30037042E /* Build configuration list for PBXNativeTarget "SDSCachedRemoteFileManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				490F8A1F1761E8C30037042E /* Debug */,
+				490F8A201761E8C30037042E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 490F89E11761E8C30037042E /* Project object */;
+}
