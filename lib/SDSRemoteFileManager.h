@@ -1,12 +1,12 @@
 /*
  * This file is part of the SDSRemoteFile package.
- * (c) Olivier Poitrey <rs@dailymotion.com>
+ * (c) Sergio De Simone, Freescapes Labs
+ * Parts of this file (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-//#import "SDSRemoteFileCompat.h"
 #import "SDSRemoteFileOperation.h"
 #import "SDSFileDownloader.h"
 #import "SDSFileCache.h"
@@ -43,8 +43,8 @@ typedef enum
     SDSRemoteFileRefreshCached = 1 << 4
 } SDSRemoteFileOptions;
 
-typedef void(^SDSRemoteFileCompletedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType);
-typedef void(^SDSRemoteFileCompletedWithFinishedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType, BOOL finished);
+//typedef void(^SDSRemoteFileCompletedBlock)(UIImage *image, NSError *error, SDSFileCacheType cacheType);
+typedef void(^SDSRemoteFileCompletedWithFinishedBlock)(NSData *fileData, NSError *error, SDSFileCacheType cacheType, BOOL finished);
 
 
 @class SDSRemoteFileManager;
@@ -61,7 +61,7 @@ typedef void(^SDSRemoteFileCompletedWithFinishedBlock)(UIImage *image, NSError *
  *
  * @return Return NO to prevent the downloading of the image on cache misses. If not implemented, YES is implied.
  */
-- (BOOL)imageManager:(SDSRemoteFileManager *)imageManager shouldDownloadImageForURL:(NSURL *)imageURL;
+- (BOOL)remoteFileManager:(SDSRemoteFileManager *)manager shouldDownloadDataForURL:(NSURL *)URL;
 
 /**
  * Allows to transform the image immediately after it has been downloaded and just before to cache it on disk and memory.
@@ -73,7 +73,7 @@ typedef void(^SDSRemoteFileCompletedWithFinishedBlock)(UIImage *image, NSError *
  *
  * @return The transformed image object.
  */
-- (UIImage *)imageManager:(SDSRemoteFileManager *)imageManager transformDownloadedImage:(UIImage *)image withURL:(NSURL *)imageURL;
+- (UIImage *)remoteFileManager:(SDSRemoteFileManager *)manager processDownloadedData:(NSData*)fileData withURL:(NSURL *)URL;
 
 @end
 
