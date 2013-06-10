@@ -27,8 +27,19 @@
 		490F8A491761EC800037042E /* SDSFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A401761EC800037042E /* SDSFileDownloader.m */; };
 		490F8A4A1761EC800037042E /* SDSFileDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */; };
 		490F8A4B1761EC800037042E /* SDSFileDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */; };
-		490F8A4C1761EC800037042E /* SDRemoteFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A441761EC800037042E /* SDRemoteFileManager.m */; };
-		490F8A4D1761EC800037042E /* SDRemoteFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A441761EC800037042E /* SDRemoteFileManager.m */; };
+		490F8A4C1761EC800037042E /* SDSRemoteFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A441761EC800037042E /* SDSRemoteFileManager.m */; };
+		490F8A4D1761EC800037042E /* SDSRemoteFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A441761EC800037042E /* SDSRemoteFileManager.m */; };
+		492C6D3D1765C4F400733D72 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F89EC1761E8C30037042E /* UIKit.framework */; };
+		492C6D3E1765C4F400733D72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F89EE1761E8C30037042E /* Foundation.framework */; };
+		492C6D3F1765C4F400733D72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F89F01761E8C30037042E /* CoreGraphics.framework */; };
+		492C6D451765C4F400733D72 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 492C6D431765C4F400733D72 /* InfoPlist.strings */; };
+		492C6D471765C4F400733D72 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6D461765C4F400733D72 /* main.m */; };
+		492C6D4B1765C4F400733D72 /* SDSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6D4A1765C4F400733D72 /* SDSAppDelegate.m */; };
+		492C6D4D1765C4F400733D72 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 492C6D4C1765C4F400733D72 /* Default.png */; };
+		492C6D4F1765C4F400733D72 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492C6D4E1765C4F400733D72 /* Default@2x.png */; };
+		492C6D511765C4F400733D72 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492C6D501765C4F400733D72 /* Default-568h@2x.png */; };
+		492C6D551765C51400733D72 /* SDSFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A401761EC800037042E /* SDSFileDownloader.m */; };
+		492C6D561765C51A00733D72 /* SDSFileDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +79,18 @@
 		490F8A411761EC800037042E /* SDSFileDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSFileDownloaderOperation.h; sourceTree = "<group>"; };
 		490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSFileDownloaderOperation.m; sourceTree = "<group>"; };
 		490F8A431761EC800037042E /* SDSRemoteFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSRemoteFileManager.h; sourceTree = "<group>"; };
-		490F8A441761EC800037042E /* SDRemoteFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRemoteFileManager.m; sourceTree = "<group>"; };
+		490F8A441761EC800037042E /* SDSRemoteFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSRemoteFileManager.m; sourceTree = "<group>"; };
 		490F8A451761EC800037042E /* SDSRemoteFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSRemoteFileOperation.h; sourceTree = "<group>"; };
+		492C6D3C1765C4F400733D72 /* SDSFileDownloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDSFileDownloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		492C6D421765C4F400733D72 /* SDSFileDownloader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDSFileDownloader-Info.plist"; sourceTree = "<group>"; };
+		492C6D441765C4F400733D72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		492C6D461765C4F400733D72 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		492C6D481765C4F400733D72 /* SDSFileDownloader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDSFileDownloader-Prefix.pch"; sourceTree = "<group>"; };
+		492C6D491765C4F400733D72 /* SDSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDSAppDelegate.h; sourceTree = "<group>"; };
+		492C6D4A1765C4F400733D72 /* SDSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDSAppDelegate.m; sourceTree = "<group>"; };
+		492C6D4C1765C4F400733D72 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		492C6D4E1765C4F400733D72 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		492C6D501765C4F400733D72 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +114,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		492C6D391765C4F400733D72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				492C6D3D1765C4F400733D72 /* UIKit.framework in Frameworks */,
+				492C6D3E1765C4F400733D72 /* Foundation.framework in Frameworks */,
+				492C6D3F1765C4F400733D72 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -101,6 +132,7 @@
 			children = (
 				490F89F21761E8C30037042E /* SDSCachedRemoteFileManager */,
 				490F8A101761E8C30037042E /* SDSCachedRemoteFileManagerTests */,
+				492C6D401765C4F400733D72 /* SDSFileDownloader */,
 				490F89EB1761E8C30037042E /* Frameworks */,
 				490F89EA1761E8C30037042E /* Products */,
 			);
@@ -111,6 +143,7 @@
 			children = (
 				490F89E91761E8C30037042E /* SDSCachedRemoteFileManager.app */,
 				490F8A091761E8C30037042E /* SDSCachedRemoteFileManagerTests.octest */,
+				492C6D3C1765C4F400733D72 /* SDSFileDownloader.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,11 +213,35 @@
 				490F8A411761EC800037042E /* SDSFileDownloaderOperation.h */,
 				490F8A421761EC800037042E /* SDSFileDownloaderOperation.m */,
 				490F8A431761EC800037042E /* SDSRemoteFileManager.h */,
-				490F8A441761EC800037042E /* SDRemoteFileManager.m */,
+				490F8A441761EC800037042E /* SDSRemoteFileManager.m */,
 				490F8A451761EC800037042E /* SDSRemoteFileOperation.h */,
 			);
 			path = lib;
 			sourceTree = SOURCE_ROOT;
+		};
+		492C6D401765C4F400733D72 /* SDSFileDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				492C6D491765C4F400733D72 /* SDSAppDelegate.h */,
+				492C6D4A1765C4F400733D72 /* SDSAppDelegate.m */,
+				492C6D411765C4F400733D72 /* Supporting Files */,
+			);
+			path = SDSFileDownloader;
+			sourceTree = "<group>";
+		};
+		492C6D411765C4F400733D72 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				492C6D421765C4F400733D72 /* SDSFileDownloader-Info.plist */,
+				492C6D431765C4F400733D72 /* InfoPlist.strings */,
+				492C6D461765C4F400733D72 /* main.m */,
+				492C6D481765C4F400733D72 /* SDSFileDownloader-Prefix.pch */,
+				492C6D4C1765C4F400733D72 /* Default.png */,
+				492C6D4E1765C4F400733D72 /* Default@2x.png */,
+				492C6D501765C4F400733D72 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -225,6 +282,23 @@
 			productReference = 490F8A091761E8C30037042E /* SDSCachedRemoteFileManagerTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		492C6D3B1765C4F400733D72 /* SDSFileDownloader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 492C6D541765C4F400733D72 /* Build configuration list for PBXNativeTarget "SDSFileDownloader" */;
+			buildPhases = (
+				492C6D381765C4F400733D72 /* Sources */,
+				492C6D391765C4F400733D72 /* Frameworks */,
+				492C6D3A1765C4F400733D72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDSFileDownloader;
+			productName = SDSFileDownloader;
+			productReference = 492C6D3C1765C4F400733D72 /* SDSFileDownloader.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -249,6 +323,7 @@
 			targets = (
 				490F89E81761E8C30037042E /* SDSCachedRemoteFileManager */,
 				490F8A081761E8C30037042E /* SDSCachedRemoteFileManagerTests */,
+				492C6D3B1765C4F400733D72 /* SDSFileDownloader */,
 			);
 		};
 /* End PBXProject section */
@@ -270,6 +345,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				490F8A151761E8C30037042E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		492C6D3A1765C4F400733D72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				492C6D451765C4F400733D72 /* InfoPlist.strings in Resources */,
+				492C6D4D1765C4F400733D72 /* Default.png in Resources */,
+				492C6D4F1765C4F400733D72 /* Default@2x.png in Resources */,
+				492C6D511765C4F400733D72 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +387,7 @@
 				490F8A461761EC800037042E /* SDSFileCache.m in Sources */,
 				490F8A481761EC800037042E /* SDSFileDownloader.m in Sources */,
 				490F8A4A1761EC800037042E /* SDSFileDownloaderOperation.m in Sources */,
-				490F8A4C1761EC800037042E /* SDRemoteFileManager.m in Sources */,
+				490F8A4C1761EC800037042E /* SDSRemoteFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +399,18 @@
 				490F8A471761EC800037042E /* SDSFileCache.m in Sources */,
 				490F8A491761EC800037042E /* SDSFileDownloader.m in Sources */,
 				490F8A4B1761EC800037042E /* SDSFileDownloaderOperation.m in Sources */,
-				490F8A4D1761EC800037042E /* SDRemoteFileManager.m in Sources */,
+				490F8A4D1761EC800037042E /* SDSRemoteFileManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		492C6D381765C4F400733D72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				492C6D471765C4F400733D72 /* main.m in Sources */,
+				492C6D4B1765C4F400733D72 /* SDSAppDelegate.m in Sources */,
+				492C6D551765C51400733D72 /* SDSFileDownloader.m in Sources */,
+				492C6D561765C51A00733D72 /* SDSFileDownloaderOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +437,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				490F8A141761E8C30037042E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		492C6D431765C4F400733D72 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				492C6D441765C4F400733D72 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -461,6 +566,34 @@
 			};
 			name = Release;
 		};
+		492C6D521765C4F400733D72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDSFileDownloader/SDSFileDownloader-Prefix.pch";
+				INFOPLIST_FILE = "SDSFileDownloader/SDSFileDownloader-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		492C6D531765C4F400733D72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDSFileDownloader/SDSFileDownloader-Prefix.pch";
+				INFOPLIST_FILE = "SDSFileDownloader/SDSFileDownloader-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -487,6 +620,15 @@
 			buildConfigurations = (
 				490F8A1F1761E8C30037042E /* Debug */,
 				490F8A201761E8C30037042E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		492C6D541765C4F400733D72 /* Build configuration list for PBXNativeTarget "SDSFileDownloader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				492C6D521765C4F400733D72 /* Debug */,
+				492C6D531765C4F400733D72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

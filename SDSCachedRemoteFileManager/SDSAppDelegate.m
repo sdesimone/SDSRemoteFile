@@ -26,9 +26,9 @@
      {
          NSLog(@"PROGRESS: %f", ((float)receivedSize)/expectedSize);
      }
-                   completed:^(UIImage *image, NSError *error, SDSFileCacheType cacheType, BOOL finished)
+                   completed:^(NSData *fileData, NSError *error, SDSFileCacheType cacheType, BOOL finished)
      {
-         if (image)
+         if (fileData)
          {
              // do something with image
          }
