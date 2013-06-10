@@ -1,6 +1,7 @@
 /*
  * This file is part of the SDSRemoteFile package.
- * (c) Olivier Poitrey <rs@dailymotion.com>
+ * (c) Sergio De Simone, Freescapes Labs
+ * Parts of this file (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,7 +13,7 @@
 #import <mach/mach.h>
 #import <mach/mach_host.h>
 
-static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
+static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 30; // 1 month
 
 @interface SDSFileCache ()
 
@@ -25,7 +26,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 
 @implementation SDSFileCache
 
-+ (SDSFileCache *)sharedImageCache
++ (SDSFileCache *)sharedFileCache
 {
     static dispatch_once_t once;
     static id instance;
@@ -96,106 +97,69 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 
 #pragma mark ImageCache
 
-- (void)storeImage:(UIImage *)image imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk
+- (void)storeData:(NSData*)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk
 {
-    if (!image || !key)
+    if (!imageData || !key)
     {
         return;
     }
 
-    [self.memCache setObject:image forKey:key cost:image.size.height * image.size.width * image.scale];
+    [self.memCache setObject:imageData forKey:key cost:imageData.length];
 
     if (toDisk)
     {
         dispatch_async(self.ioQueue, ^
         {
-            NSData *data = imageData;
+            // Can't use defaultManager another thread
+            NSFileManager *fileManager = NSFileManager.new;
 
-            if (!data)
+            if (![fileManager fileExistsAtPath:_diskCachePath])
             {
-                if (image)
-                {
-#if TARGET_OS_IPHONE
-                    data = UIImageJPEGRepresentation(image, (CGFloat)1.0);
-#else
-                    data = [NSBitmapImageRep representationOfImageRepsInArray:image.representations usingType: NSJPEGFileType properties:nil];
-#endif
-                }
+                [fileManager createDirectoryAtPath:_diskCachePath withIntermediateDirectories:YES attributes:nil error:NULL];
             }
 
-            if (data)
-            {
-                // Can't use defaultManager another thread
-                NSFileManager *fileManager = NSFileManager.new;
-
-                if (![fileManager fileExistsAtPath:_diskCachePath])
-                {
-                    [fileManager createDirectoryAtPath:_diskCachePath withIntermediateDirectories:YES attributes:nil error:NULL];
-                }
-
-                [fileManager createFileAtPath:[self cachePathForKey:key] contents:data attributes:nil];
-            }
+            [fileManager createFileAtPath:[self cachePathForKey:key] contents:imageData attributes:nil];
         });
     }
 }
 
-- (void)storeImage:(UIImage *)image forKey:(NSString *)key
+- (void)storeData:(NSData*)fileData forKey:(NSString *)key
 {
-    [self storeImage:image imageData:nil forKey:key toDisk:YES];
+    [self storeData:fileData forKey:key toDisk:YES];
 }
 
-- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk
-{
-    [self storeImage:image imageData:nil forKey:key toDisk:toDisk];
-}
-
-- (UIImage *)imageFromMemoryCacheForKey:(NSString *)key
+- (NSData *)fileDataFromMemoryCacheForKey:(NSString *)key
 {
     return [self.memCache objectForKey:key];
 }
 
-- (UIImage *)imageFromDiskCacheForKey:(NSString *)key
+- (NSData *)fileDataFromDiskCacheForKey:(NSString *)key
 {
     // First check the in-memory cache...
-    UIImage *image = [self imageFromMemoryCacheForKey:key];
-    if (image)
+    NSData *fileData = [self fileDataFromMemoryCacheForKey:key];
+    if (fileData)
     {
-        return image;
+        return fileData;
     }
     
     // Second check the disk cache...
-    UIImage *diskImage = [self diskImageForKey:key];
-    if (diskImage)
+    fileData = [self fileDataForKey:key];
+    if (fileData)
     {
-        CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
-        [self.memCache setObject:diskImage forKey:key cost:cost];
+//        CGFloat cost = fileData.size.height * fileData.size.width * fileData.scale;
+        [self.memCache setObject:fileData forKey:key cost:fileData.length];
     }
     
-    return diskImage;
+    return fileData;
 }
 
-- (UIImage *)diskImageForKey:(NSString *)key
+- (NSData*)fileDataForKey:(NSString *)key
 {
     NSString *path = [self cachePathForKey:key];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    if (data)
-    {
-        UIImage *image = [[UIImage alloc] initWithData:data];
-        UIImage *scaledImage = [self scaledImageForKey:key image:image];
-        return scaledImage;
-    }
-    else
-    {
-        return nil;
-    }
+    return [NSData dataWithContentsOfFile:path];
 }
 
-- (UIImage *)scaledImageForKey:(NSString *)key image:(UIImage *)image
-{
-    return image;
-}
-
-- (void)queryDiskCacheForKey:(NSString *)key done:(void (^)(UIImage *image, SDSFileCacheType cacheType))doneBlock
+- (void)queryDiskCacheForKey:(NSString *)key done:(void (^)(NSData *fileData, SDSFileCacheType cacheType))doneBlock
 {
     if (!doneBlock) return;
 
@@ -206,10 +170,10 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
     }
 
     // First check the in-memory cache...
-    UIImage *image = [self imageFromMemoryCacheForKey:key];
-    if (image)
+    NSData *fileData = [self fileDataFromMemoryCacheForKey:key];
+    if (fileData)
     {
-        doneBlock(image, SDSFileCacheTypeMemory);
+        doneBlock(fileData, SDSFileCacheTypeMemory);
         return;
     }
 
@@ -217,27 +181,26 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
     {
         @autoreleasepool
         {
-            UIImage *diskImage = [self diskImageForKey:key];
-            if (diskImage)
+            NSData *fileData = [self fileDataForKey:key];
+            if (fileData)
             {
-                CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
-                [self.memCache setObject:diskImage forKey:key cost:cost];
+                [self.memCache setObject:fileData forKey:key cost:fileData.length];
             }
 
             dispatch_async(dispatch_get_main_queue(), ^
             {
-                doneBlock(diskImage, SDSFileCacheTypeDisk);
+                doneBlock(fileData, SDSFileCacheTypeDisk);
             });
         }
     });
 }
 
-- (void)removeImageForKey:(NSString *)key
+- (void)removeFileDataForKey:(NSString *)key
 {
-    [self removeImageForKey:key fromDisk:YES];
+    [self removeFileDataForKey:key fromDisk:YES];
 }
 
-- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk
+- (void)removeFileDataForKey:(NSString *)key fromDisk:(BOOL)fromDisk
 {
     if (key == nil)
     {

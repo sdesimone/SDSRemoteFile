@@ -1,13 +1,13 @@
 /*
  * This file is part of the SDSRemoteFile package.
- * (c) Olivier Poitrey <rs@dailymotion.com>
+ * (c) Sergio De Simone, Freescapes Labs
+ * Parts of this file (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 #import <Foundation/Foundation.h>
-//#import "SDSRemoteFileCompat.h"
 
 enum SDSFileCacheType
 {
@@ -47,7 +47,7 @@ typedef enum SDSFileCacheType SDSFileCacheType;
  *
  * @return SDSFileCache global instance
  */
-+ (SDSFileCache *)sharedImageCache;
++ (SDSFileCache *)sharedFileCache;
 
 /**
  * Init a new cache store with a specific namespace
@@ -62,7 +62,7 @@ typedef enum SDSFileCacheType SDSFileCacheType;
  * @param image The image to store
  * @param key The unique image cache key, usually it's image absolute URL
  */
-- (void)storeImage:(UIImage *)image forKey:(NSString *)key;
+- (void)storeData:(NSData *)fileData forKey:(NSString *)key;
 
 /**
  * Store an image into memory and optionally disk cache at the given key.
@@ -71,7 +71,7 @@ typedef enum SDSFileCacheType SDSFileCacheType;
  * @param key The unique image cache key, usually it's image absolute URL
  * @param toDisk Store the image to disk cache if YES
  */
-- (void)storeImage:(UIImage *)image forKey:(NSString *)key toDisk:(BOOL)toDisk;
+//- (void)storeData:(NSData *)fileData forKey:(NSString *)key toDisk:(BOOL)toDisk;
 
 /**
  * Store an image into memory and optionally disk cache at the given key.
@@ -83,35 +83,35 @@ typedef enum SDSFileCacheType SDSFileCacheType;
  * @param key The unique image cache key, usually it's image absolute URL
  * @param toDisk Store the image to disk cache if YES
  */
-- (void)storeImage:(UIImage *)image imageData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk;
+- (void)storeData:(NSData *)data forKey:(NSString *)key toDisk:(BOOL)toDisk;
 
 /**
  * Query the disk cache asynchronously.
  *
  * @param key The unique key used to store the wanted image
  */
-- (void)queryDiskCacheForKey:(NSString *)key done:(void (^)(UIImage *image, SDSFileCacheType cacheType))doneBlock;
+- (void)queryDiskCacheForKey:(NSString *)key done:(void (^)(NSData *data, SDSFileCacheType cacheType))doneBlock;
 
 /**
  * Query the memory cache synchronously.
  *
  * @param key The unique key used to store the wanted image
  */
-- (UIImage *)imageFromMemoryCacheForKey:(NSString *)key;
+- (NSData *)fileDataFromMemoryCacheForKey:(NSString *)key;
 
 /**
  * Query the disk cache synchronously after checking the memory cache.
  *
  * @param key The unique key used to store the wanted image
  */
-- (UIImage *)imageFromDiskCacheForKey:(NSString *)key;
+- (NSData *)fileDataFromDiskCacheForKey:(NSString *)key;
 
 /**
  * Remove the image from memory and disk cache synchronously
  *
  * @param key The unique image cache key
  */
-- (void)removeImageForKey:(NSString *)key;
+- (void)removeFileDataForKey:(NSString *)key;
 
 /**
  * Remove the image from memory and optionaly disk cache synchronously
@@ -119,7 +119,7 @@ typedef enum SDSFileCacheType SDSFileCacheType;
  * @param key The unique image cache key
  * @param fromDisk Also remove cache entry from disk if YES
  */
-- (void)removeImageForKey:(NSString *)key fromDisk:(BOOL)fromDisk;
+- (void)removeFileDataForKey:(NSString *)key fromDisk:(BOOL)fromDisk;
 
 /**
  * Clear all memory cached images
