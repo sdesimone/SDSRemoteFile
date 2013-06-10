@@ -1,13 +1,13 @@
 /*
  * This file is part of the SDSRemoteFile package.
- * (c) Olivier Poitrey <rs@dailymotion.com>
+ * (c) Sergio De Simone, Freescapes Labs
+ * Parts of this file (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 #import <Foundation/Foundation.h>
-//#import "SDSRemoteFileCompat.h"
 #import "SDSRemoteFileOperation.h"
 
 typedef enum
@@ -42,7 +42,7 @@ extern NSString *const SDSRemoteFileDownloadStartNotification;
 extern NSString *const SDSRemoteFileDownloadStopNotification;
 
 typedef void(^SDSFileDownloaderProgressBlock)(NSUInteger receivedSize, long long expectedSize);
-typedef void(^SDSFileDownloaderCompletedBlock)(UIImage *image, NSData *data, NSError *error, BOOL finished);
+typedef void(^SDSFileDownloaderCompletedBlock)(NSData *data, NSError *error, BOOL finished);
 
 /**
  * Asynchronous downloader dedicated and optimized for image loading.
@@ -94,7 +94,7 @@ typedef void(^SDSFileDownloaderCompletedBlock)(UIImage *image, NSData *data, NSE
  *
  * @return A cancellable SDSRemoteFileOperation
  */
-- (id<SDSRemoteFileOperation>)downloadImageWithURL:(NSURL *)url
+- (id<SDSRemoteFileOperation>)downloadFileWithURL:(NSURL *)url
                                         options:(SDSFileDownloaderOptions)options
                                        progress:(SDSFileDownloaderProgressBlock)progressBlock
                                       completed:(SDSFileDownloaderCompletedBlock)completedBlock;

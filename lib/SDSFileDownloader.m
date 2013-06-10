@@ -1,6 +1,7 @@
 /*
  * This file is part of the SDSRemoteFile package.
- * (c) Olivier Poitrey <rs@dailymotion.com>
+ * (c) Sergio De Simone, Freescapes Labs
+ * Parts of this file (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -109,7 +110,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
     return _downloadQueue.maxConcurrentOperationCount;
 }
 
-- (id<SDSRemoteFileOperation>)downloadImageWithURL:(NSURL *)url options:(SDSFileDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock
+- (id<SDSRemoteFileOperation>)downloadFileWithURL:(NSURL *)url options:(SDSFileDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(NSData *, NSError *, BOOL))completedBlock
 {
     __block SDSFileDownloaderOperation *operation;
     __weak SDSFileDownloader *wself = self;
@@ -132,7 +133,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
                 if (callback) callback(receivedSize, expectedSize);
             }
         }
-        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished)
+        completed:^(NSData *data, NSError *error, BOOL finished)
         {
             if (!wself) return;
             SDSFileDownloader *sself = wself;
@@ -144,7 +145,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
             for (NSDictionary *callbacks in callbacksForURL)
             {
                 SDSFileDownloaderCompletedBlock callback = callbacks[kCompletedCallbackKey];
-                if (callback) callback(image, data, error, finished);
+                if (callback) callback(data, error, finished);
             }
         }
         cancelled:^
@@ -166,14 +167,14 @@ static NSString *const kCompletedCallbackKey = @"completed";
     return operation;
 }
 
-- (void)addProgressCallback:(void (^)(NSUInteger, long long))progressBlock andCompletedBlock:(void (^)(UIImage *, NSData *data, NSError *, BOOL))completedBlock forURL:(NSURL *)url createCallback:(void (^)())createCallback
+- (void)addProgressCallback:(void (^)(NSUInteger, long long))progressBlock andCompletedBlock:(void (^)(NSData *data, NSError *, BOOL))completedBlock forURL:(NSURL *)url createCallback:(void (^)())createCallback
 {
     // The URL will be used as the key to the callbacks dictionary so it cannot be nil. If it is nil immediately call the completed block with no image or data.
     if(url == nil)
     {
         if (completedBlock != nil)
         {
-            completedBlock(nil, nil, nil, NO);
+            completedBlock(nil, nil, NO);
         }
         return;
     }
