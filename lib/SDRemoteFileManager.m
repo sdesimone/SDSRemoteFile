@@ -1,13 +1,13 @@
 /*
  * This file is part of the SDSRemoteFile package.
- * (c) Olivier Poitrey <rs@dailymotion.com>
+ * (c) Sergio De Simone, Freescapes Labs
+ * Parts of this file (c) Olivier Poitrey <rs@dailymotion.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 #import "SDSRemoteFileManager.h"
-//#import "UIImage+GIF.h"
 #import <objc/message.h>
 
 @interface SDSRemoteFileCombinedOperation : NSObject <SDSRemoteFileOperation>
@@ -50,7 +50,7 @@
 
 - (SDSFileCache *)createCache
 {
-    return [SDSFileCache sharedImageCache];
+    return [SDSFileCache sharedFileCache];
 }
 
 - (NSString *)cacheKeyForURL:(NSURL *)url
@@ -102,32 +102,32 @@
     
     NSString *key = [self cacheKeyForURL:url];
 
-    [self.imageCache queryDiskCacheForKey:key done:^(UIImage *image, SDSFileCacheType cacheType)
+    [self.imageCache queryDiskCacheForKey:key done:^(NSData *fileData, SDSFileCacheType cacheType)
     {
         if (operation.isCancelled) return;
 
-        if ((!image || options & SDSRemoteFileRefreshCached) && (![self.delegate respondsToSelector:@selector(imageManager:shouldDownloadImageForURL:)] || [self.delegate imageManager:self shouldDownloadImageForURL:url]))
+        if ((!fileData || options & SDSRemoteFileRefreshCached) && (![self.delegate respondsToSelector:@selector(remoteFileManager:shouldDownloadDataForURL:)] || [self.delegate remoteFileManager:self shouldDownloadDataForURL:url]))
         {
-            if (image && options & SDSRemoteFileRefreshCached)
+            if (fileData && options & SDSRemoteFileRefreshCached)
             {
-                // If image was found in the cache bug SDSRemoteFileRefreshCached is provided, notify about the cached image
+                // If fileData was found in the cache bug SDSRemoteFileRefreshCached is provided, notify about the cached fileData
                 // AND try to re-download it in order to let a chance to NSURLCache to refresh it from server.
-                completedBlock(image, nil, cacheType, YES);
+                completedBlock(fileData, nil, cacheType, YES);
             }
 
-            // download if no image or requested to refresh anyway, and download allowed by delegate
+            // download if no fileData or requested to refresh anyway, and download allowed by delegate
             SDSFileDownloaderOptions downloaderOptions = 0;
             if (options & SDSRemoteFileLowPriority) downloaderOptions |= SDSFileDownloaderLowPriority;
             if (options & SDSRemoteFileProgressiveDownload) downloaderOptions |= SDSFileDownloaderProgressiveDownload;
             if (options & SDSRemoteFileRefreshCached) downloaderOptions |= SDSFileDownloaderUseNSURLCache;
-            if (image && options & SDSRemoteFileRefreshCached)
+            if (fileData && options & SDSRemoteFileRefreshCached)
             {
-                // force progressive off if image already cached but forced refreshing
+                // force progressive off if fileData already cached but forced refreshing
                 downloaderOptions &= ~SDSFileDownloaderProgressiveDownload;
-                // ignore image read from NSURLCache if image if cached but force refreshing
+                // ignore fileData read from NSURLCache if fileData if cached but force refreshing
                 downloaderOptions |= SDSFileDownloaderIgnoreCachedResponse;
             }
-            __block id<SDSRemoteFileOperation> subOperation = [self.imageDownloader downloadImageWithURL:url options:downloaderOptions progress:progressBlock completed:^(UIImage *downloadedImage, NSData *data, NSError *error, BOOL finished)
+            __block id<SDSRemoteFileOperation> subOperation = [self.imageDownloader downloadFileWithURL:url options:downloaderOptions progress:progressBlock completed:^(NSData *fileData, NSError *error, BOOL finished)
             {                
                 if (weakOperation.cancelled)
                 {
@@ -149,35 +149,17 @@
                 {
                     BOOL cacheOnDisk = !(options & SDSRemoteFileCacheMemoryOnly);
 
-                    if (options & SDSRemoteFileRefreshCached && image && !downloadedImage)
+                    if (options & SDSRemoteFileRefreshCached && fileData)
                     {
-                        // Image refresh hit the NSURLCache cache, do not call the completion block
-                    }
-                    else if (downloadedImage && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)])
-                    {
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
-                                       {
-                            UIImage *transformedImage = [self.delegate imageManager:self transformDownloadedImage:downloadedImage withURL:url];
-
-                            dispatch_async(dispatch_get_main_queue(), ^
-                            {
-                                completedBlock(transformedImage, nil, SDSFileCacheTypeNone, finished);
-                            });
-
-                            if (transformedImage && finished)
-                            {
-                                NSData *dataToStore = [transformedImage isEqual:downloadedImage] ? data : nil;
-                                [self.imageCache storeImage:transformedImage imageData:dataToStore forKey:key toDisk:cacheOnDisk];
-                            }
-                        });
+                        // fileData refresh hit the NSURLCache cache, do not call the completion block
                     }
                     else
                     {
-                        completedBlock(downloadedImage, nil, SDSFileCacheTypeNone, finished);
+                        completedBlock(fileData, nil, SDSFileCacheTypeNone, finished);
 
-                        if (downloadedImage && finished)
+                        if (fileData && finished)
                         {
-                            [self.imageCache storeImage:downloadedImage imageData:data forKey:key toDisk:cacheOnDisk];
+                            [self.imageCache storeData:fileData forKey:key toDisk:cacheOnDisk];
                         }
                     }
                 }
@@ -192,9 +174,9 @@
             }];
             operation.cancelBlock = ^{[subOperation cancel];};
         }
-        else if (image)
+        else if (fileData)
         {
-            completedBlock(image, nil, cacheType, YES);
+            completedBlock(fileData, nil, cacheType, YES);
             @synchronized(self.runningOperations)
             {
                 [self.runningOperations removeObject:operation];
@@ -202,7 +184,7 @@
         }
         else
         {
-            // Image not in cache and download disallowed by delegate
+            // fileData not in cache and download disallowed by delegate
             completedBlock(nil, nil, SDSFileCacheTypeNone, YES);
             @synchronized(self.runningOperations)
             {
